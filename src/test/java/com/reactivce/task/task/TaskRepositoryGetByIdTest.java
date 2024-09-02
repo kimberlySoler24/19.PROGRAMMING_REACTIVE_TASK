@@ -14,12 +14,13 @@ public class TaskRepositoryGetByIdTest {
 
     @Test
     public void shouldFindTaskById() {
-        Task task = Task.builder().title("test").description("esta es una prueba").status("PENDING").build();
+        Task task = Task.builder().title("test").description("esta es una prueba").status("PENDIENTE")
+                .userEmail("kimberly@gmail.com").build();
         taskRepository.save(task).block();
 
         taskRepository.findById(task.getId())
                 .as(StepVerifier::create)
-                .expectNextMatches(foundTask -> "Existing Task".equals(foundTask.getTitle()))
+                .expectNextMatches(foundTask -> "test".equals(foundTask.getTitle()))
                 .verifyComplete();
     }
 }

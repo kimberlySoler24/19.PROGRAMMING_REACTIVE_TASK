@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS tasks (
     title VARCHAR(255) NOT NULL,
     description TEXT,
     status VARCHAR(50) NOT NULL,
-    user_id VARCHAR(100) NOT NULL
+    userEmail VARCHAR(100) NOT NULL
 );

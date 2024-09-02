@@ -18,28 +18,28 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/getById/{id}")
     public Mono<Task> getTaskById(@PathVariable Long id) throws InterruptedException{
         return taskService.getTaskById(id);
     }
 
-    @GetMapping
-    public Flux<Task> getAllUsers() {
+    @GetMapping("/getAllTasks")
+    public Flux<Task> getAllTasks() {
         return taskService.getAllTask();
     }
 
-    @PostMapping
+    @PostMapping("/createTask")
     public Mono<Task> createUser(@RequestBody TaskDTO task) throws InterruptedException{
         return taskService.createTask(task);
     }
 
-    @PutMapping("/{id}")
-    public Mono<Task> updateUser(@RequestBody Task task) throws InterruptedException{
+    @PutMapping("/updateTask/{id}")
+    public Mono<Task> updateTask(@RequestBody Task task) throws InterruptedException{
         return taskService.updateTask(task);
     }
 
-    @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<String>> deleteUser(@PathVariable Long id) throws InterruptedException{
+    @DeleteMapping("/deleteTask/{id}")
+    public Mono<ResponseEntity<String>> deleteTask(@PathVariable Long id) throws InterruptedException{
         return taskService.deleteTask(id).then(Mono.just(ResponseEntity.ok("Eliminado correctamente")));
     }
 
